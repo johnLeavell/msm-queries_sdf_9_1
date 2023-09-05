@@ -7,12 +7,13 @@ class DirectorsController < ApplicationController
 
   def show
     @the_director = Director.find(params[:id])
-
+    @filmography = Movie.where( director_id: @the_director.id )
+    
     render template: 'directors/show'
   end
 
   def oldest
-    @eldest_director = Director.where.not({ dob: nil}).order( dob: :asc).first
+    @eldest_director = Director.where.not( dob: nil ).order( dob: :asc).first
 
     render template: 'directors/oldest'
   end

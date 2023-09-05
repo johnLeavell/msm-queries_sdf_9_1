@@ -6,6 +6,8 @@ class ActorsController < ApplicationController
 
   def show
     @the_actor = Actor.find(params[:id])
+    @characters = Character.where( actor_id: @the_actor )
+
     render template: 'actors/show'
   end
   
